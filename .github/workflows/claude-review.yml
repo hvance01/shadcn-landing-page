@@ -1,0 +1,53 @@
+name: Claude AI Review
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  claude-review:
+    name: AI Self-Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    if: >
+      github.event_name == 'pull_request' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.issue.pull_request != null &&
+       contains(github.event.comment.body, '@claude'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          direct_prompt: |
+            请对这个 PR 进行全面的代码审查，重点检查：
+
+            1. **代码质量**：代码风格是否一致，是否有明显的代码异味
+            2. **类型安全**：TypeScript 类型是否正确使用
+            3. **组件设计**：React 组件是否遵循最佳实践（props、hooks 使用等）
+            4. **样式**：Tailwind CSS 类名是否合理，是否有冗余样式
+            5. **可访问性**：是否有明显的 a11y 问题
+            6. **潜在 Bug**：逻辑错误、边界条件等
+
+            请用中文给出审查意见，并对每个问题说明严重程度（建议/警告/错误）。

@@ -34,7 +34,7 @@ export const HeroSection = () => {
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+            <Button className="w-5/6 md:w-1/4 font-bold group/arrow bg-orange-500 hover:bg-orange-600">
               立即体验
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
@@ -52,6 +52,7 @@ export const HeroSection = () => {
               </Link>
             </Button>
           </div>
+          <p className="text-sm text-muted-foreground">无需信用卡，立即开始</p>
         </div>
 
         <div className="relative group mt-14">

@@ -21,21 +21,22 @@ export const HeroSection = () => {
 
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
-              欢迎使用
-              <span className="text-transparent px-2 bg-gradient-to-r from-[#4ECDC4] to-[#2B6CB0] bg-clip-text">
-                CodeAlly
+              Experience the
+              <span className="text-transparent px-2 bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">
+                Shadcn
               </span>
-              — AI 驱动的开发平台
+              landing page
             </h1>
           </div>
 
           <p className="max-w-screen-sm mx-auto text-xl text-muted-foreground">
-            从想法到上线，只需三步。不写代码、不装环境、不等排期。
+            {`We're more than just a tool, we're a community of passionate
+            creators. Get access to exclusive resources, tutorials, and support.`}
           </p>
 
           <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow bg-orange-500 hover:bg-orange-600">
-              立即体验
+            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
+              Get Started
               <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
             </Button>
 
@@ -52,7 +53,6 @@ export const HeroSection = () => {
               </Link>
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground">无需信用卡，立即开始</p>
         </div>
 
         <div className="relative group mt-14">
